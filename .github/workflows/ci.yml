@@ -34,23 +34,22 @@ jobs:
           name: ${{matrix.service}}-${{matrix.python-version}}-bandit-report
           path: ${{matrix.service}}-${{matrix.python-version}}-bandit-report.html
 
-    deploy:
-      runs-on : ubuntu-latest
-      enviroment: 
-          name : github-pages
-          url: ${{ steps.deployment.outputs.page.url}}
-        permissions : 
-          pages: write
-          id-token: write
-        steps: 
-          - uses: actions/download-artifact@v7
-            with: 
-              name: tasks-api-3.12-bandit-report
-              path: _site
-          - uses: actions/download-artifact@v5
-            with: 
-              path: _site
-              retention-days: 2
-          - id: deployment
-            uses: actions/deploy-page@v4
-            
+  deploy:
+    runs-on : ubuntu-latest
+    enviroment: 
+        name : github-pages
+        url: ${{ steps.deployment.outputs.page.url}}
+      permissions : 
+        pages: write
+        id-token: write
+      steps: 
+        - uses: actions/download-artifact@v7
+          with: 
+            name: tasks-api-3.12-bandit-report
+            path: _site
+        - uses: actions/download-artifact@v5
+          with: 
+            path: _site
+            retention-days: 2
+        - id: deployment
+          uses: actions/deploy-page@v4
