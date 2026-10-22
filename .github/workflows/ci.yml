@@ -11,8 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: [tasks-api, title-normalizer] # ${{matrix.service}}
-        python-version: ["3.10", "3.11", "3.12"] # ${{matrix.python-version}}
+        service: [tasks-api, title-normalizer]
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -41,7 +41,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      pages: write # default for Github Workflow token is none so we cannot write to github pages without it
+      pages: write
       id-token: write
     steps:
       - uses: actions/download-artifact@v7
