@@ -99,7 +99,7 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v5
 
-    build_image:
+    build_images:
       runs-on: ubuntu-latest
       strategy:
         matrix:
