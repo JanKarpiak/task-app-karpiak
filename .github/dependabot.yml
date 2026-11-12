@@ -24,6 +24,3 @@ updates:
     groups:
       base-images:
         patterns: ["python"]
-    # [only if the rehearsal shows it works]
-    # cooldown:
-    #   exclude: ["python"]
