@@ -150,9 +150,28 @@ Tasks:
 5. Pin the other actions in `ci.yml` by the full commit SHA, with the version in a comment.
 6. Read your whole `ci.yml` and say aloud what each job does.
 
+### Meeting 7: keeping dependencies and the repo in order
+
+Dependabot opens pull requests that update dependencies when newer versions exist. Pinning a base image by digest freezes it; Dependabot proposes a newer digest a few days after the tag has moved. A `CODEOWNERS` file names who is asked to review a change, a pull request template is the starting text for a description, and two ruleset settings keep the branch history linear and limit the available merge methods.
+
+If you missed this meeting: copy `services/tasks-api/Dockerfile` and `services/title-normalizer/Dockerfile` (they carry a pinned digest), `.github/pull_request_template.md`, `scripts/scratch-repo.sh` and `.github/dependabot.yml` from this repo as whole files, and `.github/workflows/ci.yml` if you have no `scan_images` job. Write `.github/CODEOWNERS` as one line: `* @<your-username>`. The ruleset changes are settings: in your ruleset tick Require linear history and allow only squash and rebase; also add `scan_images (tasks-api)` and `scan_images (title-normalizer)` to the required status checks. None of this is homework.
+
+Docs: [Dependabot options reference](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference), [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners), [Creating a pull request template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository), [About rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets), [Keeping your actions up to date with Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot), [Pin base image versions](https://docs.docker.com/build/building/best-practices/#pin-base-image-versions).
+
+Tasks:
+
+1. Open the pull request with the files you copied, read the log of the `scan_images` job, name the library and the vulnerability ids it reports, and merge the pull request with your admin bypass.
+2. Create `.github/dependabot.yml` with entries for github-actions and pip: a weekly schedule, a limit of three open pull requests, and one group for all actions.
+3. Add a docker entry for both Dockerfile folders with an `ignore` rule for the `python` image and a group for the base image.
+4. Create `.github/CODEOWNERS` with one line that names you as owner of every file, copy `.github/pull_request_template.md`, open one pull request and merge it.
+5. In your ruleset require linear history and allow only the squash and rebase merge methods.
+6. In a Codespace run `bash scripts/scratch-repo.sh` and read the graph it prints.
+7. Open the Dependabot pull request for your Dockerfiles, read what it changes and what the checks say, and write your decision and one reason in a comment. If you approve, merge it without the bypass. Add the two `scan_images` check names to your ruleset.
+8. Write `.github/CODEOWNERS` rules per folder, each owned by you, and read who is asked to review a pull request that changes files in two of those folders.
+9. Turn on the ruleset rule that requires review from Code Owners, open a pull request that changes an owned file, read the merge box, and turn the rule off again.
+
 ### Coming later (planned)
 
-- Quality and security: Dependabot, lint gates. Docs: [Securing your software supply chain](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain).
-- Infrastructure as code with Terraform and the Docker provider (no cloud account). Docs: [kreuzwerker/docker provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs).
+- Git history: branches, cherry-pick, squash merges and rebase. Docs: [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
 - Monitoring: metrics from the app, Prometheus, Grafana. Docs: [Prometheus overview](https://prometheus.io/docs/introduction/overview/).
 

@@ -139,5 +139,5 @@ commit "Enable debug mode for hotfix" "2026-11-01T11:15:00+00:00"
 git checkout --quiet main
 
 printf '\n'
-git log --graph --oneline --all --decorate
+git --no-pager log --graph --oneline --all --decorate
 printf '\nNothing to push. Run it again to reset.\n'
