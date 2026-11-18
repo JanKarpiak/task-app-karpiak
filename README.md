@@ -192,6 +192,12 @@ Tasks:
 10. Squash-merge a pull request that another pull request is built on (add the scenario with the script), then repair the second branch.
 11. Push a rebase with --force-with-lease after a teammate pushed first (add the scenario with the script).
 
+### Meeting 9: monitoring
+
+Prometheus reads the numbers every service offers on a schedule: the app lists them at `/metrics`, and Prometheus asks for them again and again. A counter only goes up, a histogram counts values into buckets, and a label is how you ask a question of the numbers. Grafana draws what Prometheus stores. An alert rule is a query that must stay true for a while.
+
+Docs: [Prometheus overview](https://prometheus.io/docs/introduction/overview/), [Prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/), [Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/), [Querying basics](https://prometheus.io/docs/prometheus/latest/querying/basics/), [Prometheus Python client](https://prometheus.github.io/client_python/), [Grafana: Prometheus data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/configure/), [Compose services](https://docs.docker.com/reference/compose-file/services/), [Compose volumes](https://docs.docker.com/reference/compose-file/volumes/), [Forwarding ports in your codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace).
+
 ### Coming later (planned)
 
 - Monitoring: metrics from the app, Prometheus, Grafana. Docs: [Prometheus overview](https://prometheus.io/docs/introduction/overview/).
