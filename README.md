@@ -170,8 +170,29 @@ Tasks:
 8. Write `.github/CODEOWNERS` rules per folder, each owned by you, and read who is asked to review a pull request that changes files in two of those folders.
 9. Turn on the ruleset rule that requires review from Code Owners, open a pull request that changes an owned file, read the merge box, and turn the rule off again.
 
+### Meeting 8: git history
+
+A history is a graph of commits. A merge adds a commit that joins two lines, a rebase replays commits on top of another branch and gives them new ids, a squash turns many commits into one, and a ruleset can require that the history stays linear. Cherry-pick copies one commit to another branch. A conflict is two changes to the same lines: Git stops and asks you to choose. Rewriting commits is safe only for commits nobody else has.
+
+If you missed this meeting: nothing changes in this repo. The practice happens in a separate new repository: create it with a README, open a Codespace on it and follow the two lines in the README of kubino148/git-scenarios. None of this is homework.
+
+Docs: [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing), [git cherry-pick](https://git-scm.com/docs/git-cherry-pick), [Basic merge conflicts](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), [git reflog](https://git-scm.com/docs/git-reflog), [About merge methods on GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github), [Resolving a merge conflict on GitHub](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/resolving-a-merge-conflict-on-github).
+
+Tasks:
+
+1. Create a new repository with a README, open a Codespace on it and run the scenario script.
+2. Predict, then merge three pull requests with the three merge buttons, and read the graph each leaves.
+3. Rebase a branch that is behind and push it with --force-with-lease.
+4. Resolve a conflict in a merge.
+5. Resolve a conflict in a rebase.
+6. Cherry-pick two commits from hotfix-main onto hotfix-release.
+7. Run git pull on a diverged branch, read what git says, and put your commit on top of the remote.
+8. Revert a bad commit that is already pushed; bring lost commits back with git reflog.
+9. Cherry-pick a commit that conflicts (add the scenario with the script) and resolve the conflict.
+10. Squash-merge a pull request that another pull request is built on (add the scenario with the script), then repair the second branch.
+11. Push a rebase with --force-with-lease after a teammate pushed first (add the scenario with the script).
+
 ### Coming later (planned)
 
-- Git history: branches, cherry-pick, squash merges and rebase. Docs: [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
 - Monitoring: metrics from the app, Prometheus, Grafana. Docs: [Prometheus overview](https://prometheus.io/docs/introduction/overview/).
 
